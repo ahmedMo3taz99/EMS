@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 
 const LINKS = [
   { label: 'الرئيسية', id: 'hero' },
-  { label: 'التقنية', id: 'ems' },
   { label: 'الباقات', id: 'packages' },
+  { label: 'المعرض', id: 'gallery' },
   { label: 'آراء العملاء', id: 'feedback' },
   { label: 'احجز', id: 'book' },
 ];
@@ -38,7 +38,7 @@ export default function Navbar() {
       <nav id="navbar" className={scrolled ? 'scrolled' : ''}>
         <a href="/" aria-label="العودة للرئيسية" style={{ display: 'inline-flex', alignItems: 'center' }}>
           <img
-            src="/assets/img/logo.png"
+            src="/assets/img/logo-only.png"
             alt="PRO-FIT"
             onError={e => {
               const t = e.target as HTMLImageElement;

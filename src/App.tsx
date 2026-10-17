@@ -8,11 +8,12 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SectionHero from './components/sections/SectionHero';
 import SectionOffer from './components/sections/SectionOffer';
-import SectionEms from './components/sections/SectionEms';
 import SectionPackages from './components/sections/SectionPackages';
 import SectionFeedback from './components/sections/SectionFeedback';
 import SectionFaq  from './components/sections/SectionFaq';
 import SectionBook from './components/sections/SectionBook';
+import SectionVideos from './components/sections/SectionVideos';
+import SectionPosts from './components/sections/SectionPosts';
 import InfoPage from './pages/InfoPage';
 
 export default function App() {
@@ -37,7 +38,9 @@ function InfoApp({ page }: { page: 'about' | 'terms' | 'privacy' }) {
 function HomeApp() {
   const [ready, setReady] = useState(false);
   const onDone = useCallback(() => setReady(true), []);
-  const goBook = () => document.getElementById('book')?.scrollIntoView({ behavior: 'smooth' });
+  const goBook = () => document.getElementById('book')?.scrollIntoView({
+    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+  });
 
   // Re-measure pins once fonts/images have settled
   useEffect(() => {
@@ -63,9 +66,10 @@ function HomeApp() {
           <main>
             <SectionHero onBook={goBook} />
             <SectionOffer onBook={goBook} />
-            <SectionEms />
+            <SectionVideos />
             <SectionPackages />
             <SectionFeedback />
+            <SectionPosts />
             <SectionFaq />
             <SectionBook />
           </main>
