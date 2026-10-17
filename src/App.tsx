@@ -7,14 +7,34 @@ import NoiseFilter from './components/NoiseFilter';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SectionHero from './components/sections/SectionHero';
+import SectionOffer from './components/sections/SectionOffer';
 import SectionEms from './components/sections/SectionEms';
 import SectionPackages from './components/sections/SectionPackages';
 import SectionFeedback from './components/sections/SectionFeedback';
 import SectionFaq  from './components/sections/SectionFaq';
 import SectionBook from './components/sections/SectionBook';
+import InfoPage from './pages/InfoPage';
 
 export default function App() {
   usePixelUnit();
+  const page = window.location.pathname.match(/\/(about|terms|privacy)\.html$/)?.[1] as 'about' | 'terms' | 'privacy' | undefined;
+  if (page) return <InfoApp page={page} />;
+  return <HomeApp />;
+}
+
+function InfoApp({ page }: { page: 'about' | 'terms' | 'privacy' }) {
+  return (
+    <>
+      <NoiseFilter />
+      <CustomCursor />
+      <Navbar />
+      <main><InfoPage page={page} /></main>
+      <Footer />
+    </>
+  );
+}
+
+function HomeApp() {
   const [ready, setReady] = useState(false);
   const onDone = useCallback(() => setReady(true), []);
   const goBook = () => document.getElementById('book')?.scrollIntoView({ behavior: 'smooth' });
@@ -23,7 +43,10 @@ export default function App() {
   useEffect(() => {
     if (!ready) return;
     const refresh = () => ScrollTrigger.refresh();
-    const t = setTimeout(refresh, 400);
+    const t = setTimeout(() => {
+      refresh();
+      if (window.location.hash) document.getElementById(window.location.hash.slice(1))?.scrollIntoView();
+    }, 450);
     window.addEventListener('load', refresh);
     document.fonts?.ready.then(refresh);
     return () => { clearTimeout(t); window.removeEventListener('load', refresh); };
@@ -39,6 +62,7 @@ export default function App() {
           <Navbar />
           <main>
             <SectionHero onBook={goBook} />
+            <SectionOffer onBook={goBook} />
             <SectionEms />
             <SectionPackages />
             <SectionFeedback />

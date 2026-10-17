@@ -26,29 +26,33 @@ export default function Navbar() {
 
   const scrollTo = (id: string) => {
     setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
+      window.location.href = `/#${id}`;
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <>
       <nav id="navbar" className={scrolled ? 'scrolled' : ''}>
-        <img
-          src="/assets/img/logo.png"
-          alt="PRO-FIT"
-          onError={e => {
-            const t = e.target as HTMLImageElement;
-            t.style.display = 'none';
-            if (t.nextElementSibling) (t.nextElementSibling as HTMLElement).style.display = 'block';
-          }}
-          style={{ height: 40, objectFit: 'contain' }}
-        />
-        <div style={{ display: 'none', fontSize: 20, fontWeight: 900, direction: 'ltr' }}>
-          <span style={{ color: 'var(--white)' }}>PRO</span>
-          <span style={{ color: 'var(--muted)' }}>-</span>
-          <span style={{ color: 'var(--blue)' }}>FIT</span>
-        </div>
+        <a href="/" aria-label="العودة للرئيسية" style={{ display: 'inline-flex', alignItems: 'center' }}>
+          <img
+            src="/assets/img/logo.png"
+            alt="PRO-FIT"
+            onError={e => {
+              const t = e.target as HTMLImageElement;
+              t.style.display = 'none';
+              if (t.nextElementSibling) (t.nextElementSibling as HTMLElement).style.display = 'block';
+            }}
+            style={{ height: 40, objectFit: 'contain' }}
+          />
+          <span style={{ display: 'none', fontSize: 20, fontWeight: 900, direction: 'ltr' }}>
+            <span style={{ color: 'var(--white)' }}>PRO</span><span style={{ color: 'var(--muted)' }}>-</span><span style={{ color: 'var(--blue)' }}>FIT</span>
+          </span>
+        </a>
 
-        <ul className="nav-links" style={{ display: 'flex', gap: 36, listStyle: 'none', padding: 0, margin: 0 }}>
+        <ul className="nav-links" style={{ display: 'flex', gap: 24, listStyle: 'none', padding: 0, margin: 0 }}>
           {LINKS.map(l => (
             <li key={l.id}>
               <button
@@ -60,6 +64,7 @@ export default function Navbar() {
               >{l.label}</button>
             </li>
           ))}
+          <li><a href="/about.html" data-cursor="hover" className="nav-text-link">من نحن</a></li>
         </ul>
 
         <button className="btn btn-primary nav-cta" data-cursor="hover" onClick={() => scrollTo('book')} style={{ fontSize: 13 }}>
@@ -104,6 +109,7 @@ export default function Navbar() {
               }}>{l.label}</button>
             </li>
           ))}
+          <li style={{ marginBottom: 24 }}><a href="/about.html" className="menu-item" style={{ fontSize: 'clamp(1.4rem, 6vw, 2.2rem)', fontWeight: 700, color: 'var(--white)', textDecoration: 'none' }}>من نحن</a></li>
         </ul>
         <a href="https://wa.me/966534759227" target="_blank" rel="noreferrer" className="btn btn-wa">ابدأ على واتساب</a>
       </div>

@@ -56,10 +56,14 @@ export default function Footer() {
 
         {/* Legal */}
         <div style={{ flex: '0 0 auto' }}>
-          <div style={{ fontSize: 11, color: 'var(--blue)', fontWeight: 700, letterSpacing: 3, textTransform: 'uppercase', marginBottom: 16 }}>قانوني</div>
+          <div style={{ fontSize: 11, color: 'var(--blue)', fontWeight: 700, letterSpacing: 3, textTransform: 'uppercase', marginBottom: 16 }}>روابط مهمة</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {['الأحكام والشروط وسياسات الإلغاء', 'سياسة الاستخدام والخصوصية'].map(t => (
-              <span key={t} style={{ fontSize: '0.94rem', color: 'var(--muted)' }}>{t}</span>
+            {[
+              { label: 'من نحن', href: '/about.html' },
+              { label: 'الأحكام والشروط وسياسات الإلغاء', href: '/terms.html' },
+              { label: 'سياسة الاستخدام والخصوصية', href: '/privacy.html' },
+            ].map(({ label, href }) => (
+              <a key={href} href={href} className="footer-page-link">{label}</a>
             ))}
           </div>
         </div>
