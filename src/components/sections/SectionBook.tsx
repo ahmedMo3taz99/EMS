@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import LeadForm from '../LeadForm';
 
 export default function SectionBook() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -71,7 +72,8 @@ export default function SectionBook() {
         </div>
       </div>
 
-      <div ref={rightRef} style={{ flex: '0 1 auto', maxWidth: '100%', position: 'relative' }}>
+      <div ref={rightRef} style={{ flex: '0 1 auto', maxWidth: '100%', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24 }}>
+        <LeadForm />
         <div className="glass-card book-box" style={{
           padding: 'clamp(28px, 5vh, 52px) clamp(22px, 4vw, 48px)',
           display: 'flex', flexDirection: 'column', alignItems: 'center',

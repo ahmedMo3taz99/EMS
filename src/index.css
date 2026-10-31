@@ -331,3 +331,25 @@ img { max-width: 100%; }
   .about-content, .policy-layout { padding-top: 46px; padding-bottom: 60px; }
   .about-features, .about-closing { margin-top: 48px; }
 }
+
+/* LEAD FORM (posts to the PRO-FIT dashboard API) */
+.lead-form {
+  display: flex; flex-direction: column; gap: 14px;
+  width: min(440px, 100%); padding: clamp(24px, 4vh, 36px) clamp(20px, 3vw, 32px);
+  background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+  box-shadow: 0 20px 60px var(--shadow); direction: rtl; text-align: right;
+}
+.lead-form-done { align-items: center; text-align: center; }
+.lead-form label { display: flex; flex-direction: column; gap: 6px; flex: 1 1 140px; min-width: 0; }
+.lead-form label > span { font-size: 12px; font-weight: 700; color: var(--muted); }
+.lead-form input, .lead-form select {
+  width: 100%; padding: 11px 12px; border-radius: 10px;
+  border: 1px solid var(--line); background: #fff; color: var(--white);
+  font-family: 'Cairo', sans-serif; font-size: 14px; cursor: auto;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.lead-form input:focus, .lead-form select:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--glow); }
+.lead-form-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.lead-form-error { font-size: 13px; font-weight: 600; color: #c62828; }
+.lead-form-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.lead-form .btn[disabled] { opacity: 0.6; pointer-events: none; }
